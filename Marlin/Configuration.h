@@ -529,13 +529,13 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING true // Dredding set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING true // Dredding set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING true // Dredding set to true to invert the logic of the endstop.
-#define X_MAX_ENDSTOP_INVERTING true // Dredding set to true to invert the logic of the endstop.
-#define Y_MAX_ENDSTOP_INVERTING true // Dredding set to true to invert the logic of the endstop.
-#define Z_MAX_ENDSTOP_INVERTING true // Dredding set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING true // Dredding set to true to invert the logic of the probe.
+#define X_MIN_ENDSTOP_INVERTING false
+#define Y_MIN_ENDSTOP_INVERTING false
+#define Z_MIN_ENDSTOP_INVERTING false
+#define X_MAX_ENDSTOP_INVERTING false
+#define Y_MAX_ENDSTOP_INVERTING false
+#define Z_MAX_ENDSTOP_INVERTING false
+#define Z_MIN_PROBE_ENDSTOP_INVERTING true
 
 /**
  * Stepper Drivers
@@ -551,13 +551,13 @@
  *          TMC5130, TMC5130_STANDALONE
  * :['A4988', 'DRV8825', 'LV8729', 'L6470', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE']
  */
-//#define X_DRIVER_TYPE  A4988
-//#define Y_DRIVER_TYPE  A4988
-//#define Z_DRIVER_TYPE  A4988
+#define X_DRIVER_TYPE  DRV8825
+#define Y_DRIVER_TYPE  DRV8825
+#define Z_DRIVER_TYPE  DRV8825
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
-//#define E0_DRIVER_TYPE A4988
+#define E0_DRIVER_TYPE DRV8825
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
@@ -610,15 +610,14 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 } 
-//https://www.instructables.com/id/Installing-and-Configuring-DRV8825-Stepper-Drivers/
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 144, 144, 800, 1616}  //Dredding
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 95.52}  //Dredding
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 25, 25 } //dredding z:25
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -713,8 +712,8 @@
  * Use G29 repeatedly, adjusting the Z height at each point with movement commands
  * or (with LCD_BED_LEVELING) the LCD controller.
  */
-//#define PROBE_MANUALLY
-//#define MANUAL_PROBE_START_Z 0.2
+#define PROBE_MANUALLY            //Dredding
+#define MANUAL_PROBE_START_Z 0.2  //Dredding
 
 /**
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
@@ -849,14 +848,14 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
+#define INVERT_X_DIR true
 #define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR false //dredding
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true //dredding
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1100,7 +1099,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-//#define LCD_BED_LEVELING
+#define LCD_BED_LEVELING //Dredding
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MBL_Z_STEP 0.025    // Step size while manually probing Z axis.
